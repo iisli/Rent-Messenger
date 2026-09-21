@@ -122,30 +122,6 @@ Rent использует спокойную тёмную основу с фио
 Интерфейс телефона построен вокруг коротких переходов, больших touch targets, safe-area отступов и минимального количества визуального шума.
 
 
-
-## Быстрый старт для разработки
-
-### Android-клиент
-
-```powershell
-Set-Location ".\Mobile"
-npm install
-npm run sync
-```
-
-Сборка debug APK:
-
-```powershell
-Set-Location ".\Mobile"
-.\android\gradlew.bat -p android assembleDebug
-```
-
-APK появится здесь:
-
-```text
-Mobile/android/app/build/outputs/apk/debug/app-debug.apk
-```
-
 ## Обновления
 
 Автообновление Android-клиента через GitHub Releases планируется после публикации первого стабильного APK-релиза.
