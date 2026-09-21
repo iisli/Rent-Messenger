@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="Mobile/assets/icon.png" alt="Rent logo" width="112" height="112">
+<img src="Assets/icon.svg" alt="Rent logo" width="112" height="112">
 
 # Rent
 
@@ -31,9 +31,9 @@
 4. отправить сообщение, фото, видео или голосовое;
 5. продолжить разговор на другом устройстве без ручного обновления.
 
-Rent пока находится в активной разработке. Интерфейс, серверная часть и мобильный клиент продолжают улучшаться, поэтому некоторые функции могут меняться до первого стабильного релиза.
+Rent пока находится в активной разработке. Интерфейс, мобильный клиент и desktop-версия продолжают улучшаться, поэтому некоторые функции могут меняться до первого стабильного релиза.
 
-> **Важно:** этот проект не является Open Source. Репозиторий опубликован как презентационная и рабочая страница проекта. Исходный код, серверная инфраструктура и сборки не предназначены для свободного форка или коммерческого использования.
+> **Важно:** этот проект не является Open Source. Репозиторий опубликован как презентационная и рабочая страница проекта. Исходный код и сборки не предназначены для свободного форка или коммерческого использования.
 
 ---
 
@@ -61,7 +61,7 @@ Rent пока находится в активной разработке. Ин�
 - аудиофайлы;
 - голосовые сообщения;
 - полноэкранный media viewer;
-- загрузка файлов через серверное хранилище.
+- отправка и просмотр медиафайлов прямо в переписке.
 
 ### Аккаунт и приватность
 
@@ -87,37 +87,23 @@ Rent пока находится в активной разработке. Ин�
 
 ---
 
-## Архитектура
+## Клиентский опыт
 
 ```mermaid
 flowchart LR
-    A[Rent Android<br/>Capacitor] --> C[FastAPI Server]
-    B[Rent Desktop<br/>Electron] --> C
-    C --> D[(Supabase Postgres)]
-    C --> E[Supabase Storage]
-    C --> F[WebSocket]
-    C --> G[Firebase Cloud Messaging]
-    F --> A
-    F --> B
-    G --> A
+    A[Android] <--> C[Rent]
+    B[Desktop] <--> C
+    C --> D[Chats]
+    C --> E[Media]
+    C --> F[Notifications]
 ```
 
-### Клиенты
+Rent объединяет мобильный и desktop-сценарий в одном визуальном направлении:
 
-- **Android** — Capacitor 6, phone-first HTML/CSS/JS оболочка;
-- **Desktop** — Electron;
-- общий chat/auth/business logic;
-- отдельный мобильный слой для навигации и touch UX.
-
-### Сервер
-
-- FastAPI;
-- JWT-сессии;
-- WebSocket real-time events;
-- Supabase Postgres;
-- Supabase Storage;
-- FCM push delivery;
-- валидация пользователей, файлов и сообщений.
+- **Android** — phone-first интерфейс, рассчитанный на управление одной рукой;
+- **Desktop** — просторный интерфейс для постоянной работы с несколькими диалогами;
+- **Общий опыт** — единые чаты, профили, медиа и уведомления;
+- **Навигация** — быстрый поиск, нижнее меню на телефоне и плавные переходы.
 
 ---
 
@@ -137,14 +123,12 @@ Rent использует спокойную тёмную основу с фио
 
 ---
 
-## Скриншоты
-
-Визуальные материалы будут добавлены после стабилизации текущего мобильного интерфейса.
-
-Пока в качестве brand preview используется официальная иконка проекта:
+## Визуальный preview
 
 <div align="center">
-  <img src="Mobile/assets/icon.png" alt="Rent application icon" width="180">
+  <img src="Pc/build/icon.svg" alt="Rent application icon" width="220">
+  <br><br>
+  <strong>Clean interface. Fast conversations. One Rent identity.</strong>
 </div>
 
 ---
@@ -171,26 +155,6 @@ APK появится здесь:
 ```text
 Mobile/android/app/build/outputs/apk/debug/app-debug.apk
 ```
-
-### Backend
-
-Сервер находится в директории `Server`.
-
-Основные переменные окружения:
-
-```env
-DATABASE_URL=...
-JWT_SECRET=...
-SUPABASE_URL=...
-SUPABASE_SERVICE_KEY=...
-SUPABASE_BUCKET=...
-DEV_SHOW_VERIFICATION_CODE=true
-FCM_SERVICE_ACCOUNT_JSON=...
-```
-
-`DEV_SHOW_VERIFICATION_CODE=true` нужен только для разработки, пока SMTP/Gmail ещё не настроен. Для production его следует отключить.
-
----
 
 ## Обновления
 
