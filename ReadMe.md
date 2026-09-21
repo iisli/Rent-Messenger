@@ -121,17 +121,7 @@ Rent использует спокойную тёмную основу с фио
 
 Интерфейс телефона построен вокруг коротких переходов, больших touch targets, safe-area отступов и минимального количества визуального шума.
 
----
 
-## Визуальный preview
-
-<div align="center">
-  <img src="Pc/build/icon.svg" alt="Rent application icon" width="220">
-  <br><br>
-  <strong>Clean interface. Fast conversations. One Rent identity.</strong>
-</div>
-
----
 
 ## Быстрый старт для разработки
 
